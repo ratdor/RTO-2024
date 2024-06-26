@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} RT0 || Camera Search {% endblock title %}
+{% block link %} {% static 'css/search.css' %} {% endblock link %}
+{% block navbar %}
+{% include 'nav.html' %}
+{% endblock navbar %}
+{% block content %}
+
+
+<body data-aos-easing="ease-in-out" data-aos-duration="1000" data-aos-delay="0">
+
+    <!-- End Header -->
+    <main id="main" class="mt-5">
+        <section class="inner-page">
+            <div class="container">
+                <hr>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <input type="text" name="type" value="New" hidden>
+                        <div class="col-md-4 col-sm-6 mb-2">
+                            <label for="from_date" class="form-label">From</label>
+                            <input type="date" name="from_date" id="from_date" class="form-control" value="">
+                        </div>
+                        <div class="col-md-4 col-sm-6 mb-2">
+                            <label for="to_date" class="form-label">To</label>
+                            <input type="date" name="to_date" id="to_date" class="form-control" value="">
+                        </div>
+                        <div class="col-md-4 col-sm-12 text-center text-sm-start" style="margin-top:30px;">
+                            <input type="submit" class="btn btn-success" value="Search">
+                        </div>
+                    </div>
+                </form>
+
+                <hr>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-2">Vehicle No:</div>
+                        <div class="col-lg-4 col-md-6"> <input name="vecregno" class="form-control" value=""></div>
+                        <div class="col-lg-6 col-md-6 mt-2 mt-md-0"> <input type="submit" class="btn btn-success"
+                                value="Search Vehicle">
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <div id="table_wrapper" class="dataTables_wrapper no-footer etxt-center">
+                    {% if gps_vehicles %}
+                    <table class="table dataTable no-footer" id="table" aria-describedby="table_info">
+                        <thead>
+                            <tr>
+                                <th class="sorting sorting_asc" tabindex="0" aria-controls="table" rowspan="1"
+                                    colspan="1" aria-sort="ascending" aria-label="
+                code
+            : activate to sort column descending" style="width: 38.9px;">
+                                    code
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1"
+                                    aria-label="
+                Vehicle No
+            : activate to sort column ascending" style="width: 81.175px;">
+                                    Invoice no
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1"
+                                    aria-label="
+                Date
+            : activate to sort column ascending" style="width: 68.925px;">
+                                    Date
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1"
+                                    aria-label="Action: activate to sort column ascending" style="width: 51.575px;">
+                                    Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for gps_vehicle in gps_vehicles %}
+                            <tr>
+                                <td>{{gps_vehicle.id}}</td>
+                                <td><a href="{% url 'gps_certificate' gps_vehicle.id %}">{{gps_vehicle.invoice_no}}</a></td>
+                                <td>{{ gps_vehicle.created_at|date:"d/m/Y" }}</td>
+                                <td><a class="btn btn-success" href="{% url 'gps_certificate' gps_vehicle.id %}">View</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p>No vehicles found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+
+    {% endblock content %}

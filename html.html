@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Table</title>
+    <style>
+        /* Default styles */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: 1px solid black;
+            padding: 2px;
+            font-size: 13px;
+        }
+        .table img {
+            padding: 1px;
+        }
+        .table p {
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        .table span {
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        /* Media query for screens above 320px */
+        @media (min-width: 321px) {
+            .table th, .table td {
+                font-size: 10px; /* Reduce font size */
+            }
+            .table img {
+                width: 150px; /* Shrink image width */
+                height: auto; /* Maintain aspect ratio */
+            }
+            .table p {
+                font-size: 10px; /* Reduce text size */
+            }
+            .table span {
+                font-size: 10px; /* Reduce text size */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <table class="table table-bordered mb-4">
+
+        <tr>
+            <th>Vehicle Number Plate View</th>
+            <th>Camera Image</th>
+            <th>Sensor Image</th>
+            <th>Display Image</th>
+        </tr>
+        <tr>
+            <td class="text-center"><img src="{% static 'images/Gods (13).jpg' %}" alt="Vehicle Number Plate View" class="p-1" width="170" height="200"></td>
+            <td class="text-center"><img src="{% static 'images/Gods (13).jpg' %}" alt="Vehicle Number Plate View" class="p-1" width="170" height="200"></td>
+            <td class="text-center"><img src="{% static 'images/Gods (13).jpg' %}" alt="Vehicle Number Plate View" class="p-1" width="170" height="200"></td>
+            <td class="text-center"><img src="{% static 'images/Gods (13).jpg' %}" alt="Vehicle Number Plate View" class="p-1" width="170" height="200"></td>
+        </tr>
+
+        <tr>
+            <td colspan="4">
+                <p>This is certifying that following vehicle has been fitted and activated with approved Reverse Camera as per Standard which is activated live monitoring and more features, unless the device tampered or the seal is Broken by unauthorized technicians or individual.</p>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="text-center" colspan="2">
+                <br><br><br><span><b>Authorised Dealer Signature</b></span>
+                
+            </td>
+            <td class="text-center">
+                <br><br><br><span><b>Customer Signature</b></span>
+                
+            </td>
+            <td class="text-center">
+                <br><br><br><span><b>Distributor Signature</b></span>
+            </td>
+        </tr>
+
+    </table>
+
+</body>
+</html>

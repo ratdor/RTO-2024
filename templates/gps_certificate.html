@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} RTO || GPS Certificate {% endblock title %}
+{% block link %}{% static 'css/certificate_view.css' %}{% endblock link %}
+{% block content %}
+
+<style>
+    @media print {
+        .container {
+            width: 100%;
+            max-width: 210mm;
+            /* A4 width in mm */
+            padding: 10mm;
+            /* Adjust padding as needed */
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 0;
+        }
+
+        .text-center h1 {
+            font-size: 30px;
+        }
+
+        .text-center h2 {
+            font-size: 18px;
+        }
+
+        .logo {
+            width: 170px;
+        }
+
+        .header .qr-code {
+            width: 130px;
+        }
+
+        table tr,
+        th,
+        td {
+            font-size: 4px;
+        }
+
+        #printButton {
+            display: none;
+        }
+    }
+
+    .single-bordered-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .single-bordered-table th,
+    .single-bordered-table td {
+        border: none;
+        padding: 1px;
+    }
+
+    .single-bordered-table {
+        border: 1px solid black;
+    }
+
+    .single-bordered-table th,
+    .single-bordered-table td {
+        padding: 1px;
+    }
+
+    .single-bordered-table th:nth-child(2),
+    .single-bordered-table td:nth-child(2) {
+        border-left: 1px solid black;
+
+    }
+
+
+
+    .single-borderd-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .single-borderd-table th,
+    .single-borderd-table td {
+        border: none;
+        padding: 1px;
+    }
+
+    .single-borderd-table {
+        border: 1px solid black;
+    }
+
+    .single-borderd-table th,
+    .single-borderd-table td {
+        padding: 1px;
+    }
+
+    .single-borderd-table th:nth-child(2),
+    .single-borderd-table td:nth-child(2) {
+        border-left: none;
+
+    }
+</style>
+
+<div class="container mt-3 mb-3" style="border: 2px solid black;padding: 3px;">
+    <div class="text-center mb-4">
+        <button id="printButton" onclick="window.print();" class="btn btn-primary">Print</button>
+    </div>
+
+
+    <div class="header d-flex justify-content-between align-items-center mb-4">
+        <!-- QRCODE -->
+        <!-- Display the QR code image using base64 data -->
+        <img src="{% static 'images/qrcode.png' %}" alt="QR Code" class="qr-code">
+        <div class="text-center">
+            <h1 class="mb-0" style="color: black;font-weight: bold;">SE TECHNOLOGIES</h1><br>
+            <p class="mb-0" style="color: black;">Online Vehicle Tracking Device Certificate</p>
+            <h4>Certificate No.: <span>CF-30-Jan-2024GLInvoice No</span></h4>
+        </div>
+        <img src="{% static 'images/logo.png' %}" alt="SM Logo" class="logo">
+
+
+    </div>
+
+    <div class="section d-flex justify-content-between" style="font-size: 11px;">
+        <div class="text-start">
+
+            <strong> To: </strong> <br>
+
+            The Regional Transport Authority <br>
+
+            <strong>TN76</strong>
+        </div>
+        <div class="text-start">
+
+            Certificate Issued Date: <span><b>30-Jan-2024</b></span><br>
+            Invoice No : <span><b>{{gps_vehicle.invoice_no}}</b></span>
+            Vality Till : 30.01.2025
+
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between;">
+        <table class="mb-5" style="flex: 1; margin-right: 1px;max-width: 300px;">
+            <thead>
+                <tr>
+                    <th style="font-size: 13px; text-align: center;">Details</th>
+                </tr>
+            </thead>
+            <tbody class="table single-bordered-table mb-5">
+                <tr>
+                    <td>GPS Serial No <span style="font-weight: 700;">{{gps_vehicle.gps_serial_no}}</span></td>
+                </tr>
+                <tr>
+                    <td>GPS Model <span style="font-weight: 700;">{{gps_vehicle.gps_model}}</span></td>
+                </tr>
+                <tr>
+                    <td>Registration Date <span style="font-weight: 700;">{{gps_vehicle.registration_date}}</span></td>
+                </tr>
+                <tr>
+                    <td>Engine No <span style="font-weight: 700;">{{gps_vehicle.engine_no}}</span></td>
+                </tr>
+                <tr>
+                    <td>Network <span style="font-weight: 700;">{{gps_vehicle.network}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="mb-5" style="flex: 1; margin-left: 1px;">
+            <thead>
+                <tr>
+                    <th style="font-size: 13px; text-align: center;">Vehicle Details</th>
+                </tr>
+            </thead>
+            <tbody class="table single-bordered-table">
+                <tr>
+                    <td>Vehicle Make <span style="font-weight: 700;">{{gps_vehicle.vehicle_make}}</span></td>
+                </tr>
+                <tr>
+                    <td>Vehicle Model <span style="font-weight: 700;">{{gps_vehicle.vehicle_model}}</span></td>
+                </tr>
+                <tr>
+                    <td>Registration No <span style="font-weight: 700;">{{gps_vehicle.registration_no}}</span></td>
+                </tr>
+                <tr>
+                    <td>Chassis No <span style="font-weight: 700;">{{gps_vehicle.chassis_no}}</span></td>
+                </tr>
+                <tr>
+                    <td>Network <span style="font-weight: 700;">{{gps_vehicle.network}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <table class="table single-borderd-table mb-0">
+        <thead>
+            <tr>
+                <th style="font-size: 13px;text-align: center;">DEALER DETAIL</th>
+                <th colspan="2" style="font-size: 13px;text-align: center;">CUSTOMER DETAIL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Dealer <span style="font-weight: 700;">{{gps_vehicle.dealer}}</span></td>
+                <td>Customer Name<span style="font-weight: 700;">{{gps_vehicle.owner_name}}</span></td>
+            </tr>
+            <tr>
+                <td>DATE<span style="font-weight: 700;"> 31-Jan-2024</span></td>
+                <td>Address<span style="font-weight: 700;">{{gps_vehicle.owner_address}}</span></td>
+            </tr>
+            <tr>
+                <td>Time<span style="font-weight: 700;">12:09:19am</span></td>
+                <td>Location<span style="font-weight: 700;">{{gps_vehicle.location}}</span></td>
+            </tr>
+            <tr>
+                <td>Location<span style="font-weight: 700;">{{gps_vehicle.location}}</span></td>
+                <td>Mobile No<span style="font-weight: 700;">{{gps_vehicle.mobile_no}}</span></td>
+            </tr>
+            <tr>
+                <td>Network <span style="font-weight: 700;">{{gps_vehicle.network}}</span></td>
+                <td><span style="font-weight: 700;"></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table single-bordered-table mb-1">
+        <tbody class="mb-3">
+            <tr>
+                <td>
+                    <p class="mt-4">
+                        This is certifying that following vehicle has been fitted and activated with <br> approved Volty
+                        Soft Vehicle
+                        Location Tracking Device as per Standard which is <br> activated live tracking and more
+                        features, unless the
+                        device tampered or the seal <br> is Broken by unauthorized technicians or individual.
+                    </p>
+                    <p class="text-end" style="margin-right: 30px;">
+                        RTA/RTO/STA Signature
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="mt-3">
+                        This is to Acknowledge and confirm that we have got our vehicle fitted <br> with above vehicle
+                        location tracking unit.
+                        We have checked the performance of the <br> vehicle after fitment and we confirm GPS is
+                        functioning as per norms laid
+                        out, We <br> are satisfied with the performance of the device in all respect we undertake not to
+                        <br> raise any dispute or
+                        any legal claims against M/S Volty soft, In the event that the <br> above mentioned function are
+                        found broken/torn/tampered/
+                        after expiry & <br> Warranty date issues.
+                    </p>
+                    <p class="text-end" style="margin-right: 50px;">
+                        Dealer Signature
+                    </p>
+
+                    <p class="text-center">
+                        Customer Signature
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

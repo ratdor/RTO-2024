@@ -1,0 +1,547 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} RT0 || Camera Details {% endblock title %}
+{% block link %} {% static 'css/details.css' %} {% endblock link %}
+
+{% block navbar %}
+{% include 'nav.html' %}
+{% endblock navbar %}
+
+{% block content %}
+
+<!-------------------------------------------------------------------------- Form ---------------------------------------------------------------------------------------->
+
+<form action="#" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container" style="margin-top: 70px;">
+        <div class="row">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Vehicle Details</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 ">
+                <label class="control-label" for="vehicle_no">Vehicle No</label>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="vehicle_no" id="vehicle_no" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 rt">
+                <label for="registration_year" class="control-label">Registration Year</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="number" name="registration_year" id="registration_year" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+
+            <div class="col-md-2 chassisno ">
+                <label for="chassis_no" class="control-label">Chassis No</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="chassis_no" id="chassis_no" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="engine_no" class="control-label">Engine No</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="engine_no" id="engine_no" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+
+            <div class="col-md-2 chassisno ">
+                <label for="vehicle_make" class="control-label">Vehicle Make</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="vehicle_make" id="vehicle_make" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="vehicle_model" class="control-label">Vehicle Model</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="vehicle_model" id="vehicle_model" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+
+            <div class="col-md-2 chassisno ">
+                <label for="rto" class="control-label">RTO</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="rto" id="rto" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Vehicle Owner Details</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 ">
+                <label for="owner_name" class="control-label">Owner Name/Company name : </label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="owner_name" id="owner_name" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-2 rt">
+                <label for="manufacturer_name" class="control-label">Manufacturer Name</label>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="manufacturer_name" id="manufacturer_name" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-2 ">
+                <label for="mobile_no" class="control-label">Phone</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                       <input type="number" name="mobile_no" id="mobile_no" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="distributor_name" class="control-label">Distributor Name</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="distributor_name" id="distributor_name" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-2 ">
+                <label for="owner_address" class="control-label">Owner Address</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="owner_address" id="owner_address" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="distributor_address" class="control-label">Distributor Address</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="distributor_address" id="distributor_address" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Product Details</h2>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <p>*All in Mtrs</p>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 text-center offset-3">
+                <label class="control-label" for="Model">Primery Camera</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">Secondary Camera</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label for="camera_serial_number_primary" class="control-label">Camera Serial Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="camera_serial_number_primary" id="camera_serial_number_primary" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="camera_serial_number_secondary" class="control-label">Camera Serial Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="camera_serial_number_secondary" id="camera_serial_number_secondary" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label for="imei_no" class="control-label">IMEI NO</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="imei_no" id="imei_no" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="model_number_primary" class="control-label">Model Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="model_number_primary" id="model_number_primary" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label for="did_no_primary" class="control-label">DID Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="did_no_primary" id="did_no_primary" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="did_no_secondary" class="control-label">DID Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="did_no_secondary" id="did_no_secondary" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label for="model_number_secondary" class="control-label">Model Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="model_number_secondary" id="model_number_secondary" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 rt">
+                <label for="model_number" class="control-label">Secondary Camera-2</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label for="sim_no" class="control-label">Sim Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="sim_no" id="sim_no" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 rt">
+                <label for="camera_serial_number_tertiary" class="control-label">Camera Serial Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="camera_serial_number_tertiary" id="camera_serial_number_tertiary" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label for="mobile_network" class="control-label">Mobile Newtwork</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="mobile_network" id="mobile_network" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 rt">
+                <label for="model_number_tertiary" class="control-label">Model Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="model_number_tertiary" id="model_number_tertiary" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 rt">
+                <label for="did_no_tertiary" class="control-label">DID Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="did_no_tertiary" id="did_no_tertiary" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Certificate  Details</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="model_number_quaternary" class="control-label">Model Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="model_number_quaternary" id="model_number_quaternary" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label for="part_number" class="control-label">Part Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="part_number" id="part_number" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="drawing_number" class="control-label">Drawing Number</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="drawing_number" id="drawing_number" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Vehicle Images</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 ">
+                <label for="Vehicle_number_plate_view" class="control-label">Vehicle Number Plate View</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="file" name="Vehicle_number_plate_view" id="Vehicle_number_plate_view" class="form-control custom-file-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="Camera_image" class="control-label">Camera Image</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="file" name="Camera_image" id="Camera_image" class="form-control custom-file-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-2 ">
+                <label for="Sensor_image" class="control-label">Sensor Image</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="file" name="Sensor_image" id="Sensor_image" class="form-control custom-file-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="Display_image" class="control-label">Display Image</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="file" name="Display_image" id="Display_image" class="form-control custom-file-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="form-group text-center">
+                <input type="submit" value="Create Certificate" class="btn btn-success" id="btnsubmit" />
+            </div>
+        </div>
+
+        <div id="arrow">↑</div>
+        <div></div>
+    </div>
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} RT0 || Fitment {% endblock title %}
+{% block content %}
+
+<div class="container">
+    <form id="DisplayForm" method="get">
+        {% csrf_token %}
+        <select name="fitment_type" id="fitmentForm" onchange="handleFitmentChange(this)">
+            <option value="">__select__</option>
+            <option value="GPS">GPS Fitment</option>
+            <option value="Sensor">Sensor Fitment</option>
+            <option value="Camera">Camera Fitment</option>
+        </select>
+    </form>
+</div>
+
+<script>
+    function handleFitmentChange(select) {
+        var value = select.value;
+        if(value == "GPS") {
+            window.location.href = "{% url 'gps_details' %}"
+        } else if(value == "Sensor") {
+            window.location.href = "{% url 'details_view' %}"
+        } else if(value == 'Camera') {
+            window.location.href = "{% url 'camera_details' %}"
+        }
+    }
+</script>
+
+{% endblock content %}
+

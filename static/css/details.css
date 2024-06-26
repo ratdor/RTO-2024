@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+/****** navbar *******/
+.container {
+    margin-top: 0.2rem;
+}
+
+.navbar-scrolled {
+    background-color: white !important;
+    transition: background-color 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/***** Vehicle Images *****/
+.custom-file-input {
+    color: white;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.custom-file-input::placeholder {
+    color: #adb5bd;
+}
+
+/**** Vehicle Details *****/
+.sectionHeaderVal {
+    padding: 6px 10px;
+    margin-top: 20px;
+    background-image: linear-gradient(to top, #429ce9 0, #1375b0 100%);
+    color: #fff;
+    float: left;
+    line-height: 0;
+    font-weight: 600;
+    clip-path: polygon(0 -1%, 100% -1%, calc(100% - 35px) 100%, 0 100%);
+}
+
+.rt {
+    text-align: start;
+}
+.primary{
+    color: black;
+}
+
+/**** media screen ***/
+@media (max-width:767px) {
+    .rt {
+        margin-top: 20px
+    }
+    .primary{
+        display: none;
+    }
+}
+
+/*** arrow ***/
+#arrow {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+}
+
+.login_message {
+    height: 40px;
+    width: 17%;
+    background-color: #04aa6d;
+    color: #ffff;
+    position: absolute;
+    top: 8%;
+    left: 40%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 15px;
+    z-index: 999;
+}
+
+.close-button {
+    font-size: 20px;
+    position: relative;
+    left: 60px;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    z-index: 999;
+}
+@media print {
+.no-print {
+    display: none;
+}
+}

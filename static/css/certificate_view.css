@@ -1,0 +1,110 @@
+/* Custom Styles */
+.container {
+    padding: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+}
+
+.header h2 {
+    font-size: 18px;
+}
+
+.header .qr-code {
+    width: 130px;
+}
+
+.images img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Default styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td,
+.table td span,
+.table th span {
+    padding: 2px;
+    font-size: 12px;
+}
+
+.table img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.table p {
+    font-size: 13px;
+    margin: 0;
+}
+
+.table span {
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.text-center h1 {
+    font-size: 30px;
+}
+
+.text-center h2 {
+    font-size: 18px;
+}
+
+.logo {
+    width: 170px;
+}
+
+@media (max-width: 767px) {
+
+    .table th,
+    .table td {
+        font-size: 10px;
+    }
+
+    .table p {
+        font-size: 10px;
+    }
+
+    .table span {
+        font-size: 10px;
+    }
+
+    .text-center h1 {
+        font-size: 15px;
+    }
+
+    .text-center h2 {
+        font-size: 10px;
+    }
+
+    .header .qr-code {
+        width: 50px;
+    }
+
+    .logo {
+        width: 60px;
+    }
+
+}
+
+
+@media print {
+
+    .table th,
+    .table td,
+    .table td span,
+    .table th span {
+        padding: 2px;
+        font-size: 10px;
+    }
+}

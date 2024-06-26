@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg bg-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand text-success fw-medium" href="#">Dealer Panel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav gap-3 ms-auto">
+                {% if request.path == '/camera_details/' %}
+                    <li><a class="nav-link text-primary fw-medium" href="{% url 'camera_search' %}">Vehicles</a></li>
+                {% elif request.path == '/gps_details/' %}
+                    <li><a class="nav-link text-primary fw-medium" href="{% url 'gps_search' %}">Vehicles</a></li>
+                {% else %}
+                    <li><a class="nav-link text-primary fw-medium" href="{% url 'search_view' %}">Vehicles</a></li>
+                {% endif %}
+                <li><a class="nav-link text-primary fw-medium" href="{% url 'logout' %}">Logout</a></li>
+            </ul>            
+        </div>
+    </div>
+</nav>

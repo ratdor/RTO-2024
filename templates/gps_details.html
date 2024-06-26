@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} RT0 || GPS Details {% endblock title %}
+{% block link %} {% static 'css/details.css' %} {% endblock link %}
+
+{% block navbar %}
+{% include 'nav.html' %}
+{% endblock navbar %}
+
+{% block content %}
+
+<!-------------------------------------------------------------------------- Form ---------------------------------------------------------------------------------------->
+
+<form action="#" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container" style="margin-top: 70px;">
+
+        <div class="row mt-4">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Details</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 ">
+                <label for="invoice_no" class="control-label">Invoice no</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="invoice_no" id="invoice_no" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-2 ">
+                <label for="gps_serial_no" class="control-label">GPS Serial no</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="gps_serial_no" id="gps_serial_no" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-2 rt">
+                <label for="gps_model" class="control-label">GPS Model</label>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="gps_model" id="gps_model" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 ">
+                <label for="registration_date" class="control-label">Registration Date</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                       <input type="date" name="registration_date" id="registration_date" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-2 rt">
+                <label for="engine_no" class="control-label">Engine No</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="engine_no" id="engine_no" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 ">
+                <label for="network" class="control-label">Network</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="network" id="network" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Vehicle Details</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 ">
+                <label class="control-label" for="vehicle_make">Vehicle Make</label>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="vehicle_make" id="vehicle_make" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 rt">
+                <label for="vehicle_model" class="control-label">Vehicle Model</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="vehicle_model" id="vehicle_model" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+
+            <div class="col-md-2 chassisno ">
+                <label for="registration_no" class="control-label">Registration No</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="registration_no" id="registration_no" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="chassis_no" class="control-label">Chassis No</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="chassis_no" id="chassis_no" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Dealer Detail</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label for="dealer" class="control-label">Dealer</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="dealer" id="dealer" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="location_primary" class="control-label">Location</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="location_primary" id="location_primary" class="form-control" required>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">CUSTOMER DETAIL</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 ">
+                <label for="customer_name" class="control-label">Customer Name</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="customer_name" id="customer_name" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="customer_address" class="control-label">Address</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="customer_address" id="customer_address" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-2 ">
+                <label for="location_secondary" class="control-label">Location</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="location_secondary" id="location_secondary" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label for="mobile_no" class="control-label">Mobile No</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" name="mobile_no" id="mobile_no" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="form-group text-center">
+                <input type="submit" value="Create Certificate" class="btn btn-success" id="btnsubmit" />
+            </div>
+        </div>
+
+    </div>
+</form>
+
+
+{% endblock content %}
