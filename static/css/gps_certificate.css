@@ -1,0 +1,83 @@
+.header .qr-code {
+    width: 150px;
+    height: 140px;
+}
+
+.logo {
+    width: 170px;
+}
+
+.d-flex {
+    display: flex;
+    align-items: flex-start;
+}
+
+.text-center {
+    flex: 1;
+    text-align: center;
+}
+
+.qr-code,
+.logo {
+    align-self: flex-start;
+    margin-top: 0;
+}
+
+.certificate-number {
+    border: 0.5px solid black;
+    width: 470px;
+    padding-bottom: 20px;
+    border-radius: 50px;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 19px;
+}
+.details-table{
+    font-size: 15px;
+}
+
+
+@media (max-width: 767px) {
+
+    .table th,
+    .table td {
+        font-size: 10px;
+    }
+
+    .table p {
+        font-size: 10px;
+    }
+
+    .table span {
+        font-size: 10px;
+    }
+
+    .text-center h1 {
+        font-size: 15px;
+    }
+
+    .text-center h2 {
+        font-size: 10px;
+    }
+
+    .header .qr-code {
+        width: 50px;
+    }
+
+    .logo {
+        width: 60px;
+    }
+
+}
+
+
+@media print {
+
+    .table th,
+    .table td,
+    .table td span,
+    .table th span {
+        padding: 2px;
+        font-size: 10px;
+    }
+}

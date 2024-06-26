@@ -30,12 +30,10 @@ class cameraVehicleForm(forms.ModelForm):
 class GpsVehicleForm(forms.ModelForm):
     class Meta:
         model = gpsVehicle
-        fields = [
-            'invoice_no', 'gps_serial_no', 'gps_model', 'registration_date',
-            'engine_no', 'network', 'vehicle_make', 'vehicle_model',
-            'registration_no', 'chassis_no', 'dealer', 'location_primary',
-            'customer_name', 'customer_address', 'location_secondary', 'mobile_no'
-        ]
+        fields = '__all__'  # Use all fields from the model
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 

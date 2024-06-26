@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %} RTO || GPS Certificate {% endblock title %}
-{% block link %}{% static 'css/certificate_view.css' %}{% endblock link %}
+{% block link %}{% static 'css/gps_certificate.css' %}{% endblock link %}
 {% block content %}
 
 <style>
@@ -9,9 +9,7 @@
         .container {
             width: 100%;
             max-width: 210mm;
-            /* A4 width in mm */
             padding: 10mm;
-            /* Adjust padding as needed */
             margin: 0 auto;
             box-sizing: border-box;
         }
@@ -44,7 +42,7 @@
         table tr,
         th,
         td {
-            font-size: 4px;
+            font-size: 16px;
         }
 
         #printButton {
@@ -65,190 +63,165 @@
 
     .single-bordered-table {
         border: 1px solid black;
+        border-spacing: 15px 5px;
     }
 
-    .single-bordered-table th,
-    .single-bordered-table td {
-        padding: 1px;
+    .section-title {
+        font-size: 16px;
+        text-align: center;
+        font-weight: bold;
     }
 
-    .single-bordered-table th:nth-child(2),
-    .single-bordered-table td:nth-child(2) {
-        border-left: 1px solid black;
-
-    }
-
-
-
-    .single-borderd-table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    .single-borderd-table th,
-    .single-borderd-table td {
-        border: none;
-        padding: 1px;
-    }
-
-    .single-borderd-table {
-        border: 1px solid black;
-    }
-
-    .single-borderd-table th,
-    .single-borderd-table td {
-        padding: 1px;
-    }
-
-    .single-borderd-table th:nth-child(2),
-    .single-borderd-table td:nth-child(2) {
-        border-left: none;
-
-    }
 </style>
 
+<div class="d-flex justify-content-center mt-4">
+    <button id="printButton" onclick="window.print();" class="btn btn-primary mx-2">Print</button>
+    <a id="printButton" href="{% url 'gps_search' %}" class="btn btn-primary mx-2">Back</a>
+</div>
+
 <div class="container mt-3 mb-3" style="border: 2px solid black;padding: 3px;">
-    <div class="text-center mb-4">
-        <button id="printButton" onclick="window.print();" class="btn btn-primary">Print</button>
+    <div class="header d-flex justify-content-between align-items-start">
+        <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code" class="qr-code"
+            style="align-self: flex-start;">
+        <div class="text-center" style="flex: 1;">
+            <h1 class="mb-0" style="color: black; font-weight: bold;">S.E TECHNOLOGIES</h1>
+            <p class="mb-0 mt-3" style="color: black;">Online Vehicle Tracking Device Certificate</p>
+            <div class="d-flex justify-content-center">
+                <h4 class="certificate-number">
+                    Certificate.NO. <span style="font-weight: 700;">CF-{{gps_vehicle.created_at | date:"dmY"}}{{gps_vehicle.gps_serial_no}}</span>
+                </h4>
+            </div>
+            
+        </div>
+        <img src="{% static 'images/logo.png' %}" alt="SM Logo" class="logo" style="align-self: flex-start;">
     </div>
 
-
-    <div class="header d-flex justify-content-between align-items-center mb-4">
-        <!-- QRCODE -->
-        <!-- Display the QR code image using base64 data -->
-        <img src="{% static 'images/qrcode.png' %}" alt="QR Code" class="qr-code">
-        <div class="text-center">
-            <h1 class="mb-0" style="color: black;font-weight: bold;">SE TECHNOLOGIES</h1><br>
-            <p class="mb-0" style="color: black;">Online Vehicle Tracking Device Certificate</p>
-            <h4 style="border:1px solid black;width:490px;padding-bottom:20px;border-radius:20px">Certificate.NO. <span>CF-{{gps_vehicle.created_at | date:"dmY"}}{{gps_vehicle.gps_serial_no}}</span></h4>
-        </div>
-        <img src="{% static 'images/logo.png' %}" alt="SM Logo" class="logo">
-
-
-    </div>
-
-    <div class="section d-flex justify-content-between" style="font-size: 11px;">
+    <div class="section d-flex justify-content-between mb-4" style="font-size: 11px;">
         <div class="text-start">
-
-            <strong> To: </strong> <br>
-
-            The Regional Transport Authority <br>
-
-            <strong>{{gps_vehicle.location_primary}}</strong>
+            <strong style="font-size: 16px;"> To </strong> <br>
+            <span style="font-size: 15px;">The Regional Transport Authority</span> <br>
+            <strong style="font-size: 15px;">{{gps_vehicle.location_secondary}}</strong>
         </div>
-        <div class="text-start">
-
+        <div class="text-start me-5" style="font-size: 15px;">
             Certificate Issued Date: <span><b>{{gps_vehicle.created_at | date:"d-F-Y"}}</b></span><br>
             Invoice No : <span><b>{{gps_vehicle.invoice_no}}</b></span><br>
-            Vality Till : {{ gps_vehicle.created_at|date:"d.m.Y" }}
-
+            Validity Till : {{ gps_vehicle.created_at|date:"d.m.Y" }}
         </div>
     </div>
 
-    <div style="display: flex; justify-content: space-between;">
-        <table class="mb-5" style="flex: 1; margin-right: 1px;max-width: 300px;">
+    <div class="mt-4" style="display: flex; justify-content: space-between;">
+        <table class="details-table mb-5" style="flex: 1; margin-right: 1px;max-width: 300px;">
             <thead>
                 <tr>
-                    <th style="font-size: 13px; text-align: center;">Details</th>
+                    <th colspan="2" class="section-title">Details</th>
                 </tr>
             </thead>
-            <tbody class="table single-bordered-table mb-5">
+            <tbody class="single-bordered-table mb-5">
                 <tr>
-                    <td>GPS Serial No <span style="font-weight: 700;">{{gps_vehicle.gps_serial_no}}</span></td>
+                    <td>GPS Serial No</td>
+                    <td><span style="font-weight: 700;">{{gps_vehicle.gps_serial_no}}</span></td>
                 </tr>
                 <tr>
-                    <td>GPS Model <span style="font-weight: 700;">{{gps_vehicle.gps_model}}</span></td>
+                    <td>GPS Model</td>
+                    <td><span style="font-weight: 700;">{{gps_vehicle.gps_model}}</span></td>
                 </tr>
                 <tr>
-                    <td>Registration Date <span style="font-weight: 700;">{{gps_vehicle.registration_date}}</span></td>
+                    <td>Registration Date</td>
+                    <td><span style="font-weight: 700;">{{gps_vehicle.registration_date}}</span></td>
                 </tr>
                 <tr>
-                    <td>Engine No <span style="font-weight: 700;">{{gps_vehicle.engine_no}}</span></td>
+                    <td>Engine No</td>
+                    <td><span style="font-weight: 700;">{{gps_vehicle.engine_no}}</span></td>
                 </tr>
                 <tr>
-                    <td>Network <span style="font-weight: 700;">{{gps_vehicle.network}}</span></td>
+                    <td>Network</td>
+                    <td><span style="font-weight: 700;">{{gps_vehicle.network}}</span></td>
                 </tr>
             </tbody>
         </table>
 
-        <table class="mb-5" style="flex: 1; margin-left: 1px;">
+        <table class="details-table mb-5" style="flex: 1; margin-left: 1px;">
             <thead>
                 <tr>
-                    <th style="font-size: 13px; text-align: center;">Vehicle Details</th>
+                    <th colspan="2" class="section-title">Vehicle Details</th>
                 </tr>
             </thead>
-            <tbody class="table single-bordered-table">
+            <tbody class="single-bordered-table">
                 <tr>
-                    <td>Vehicle Make <span style="font-weight: 700;">{{gps_vehicle.vehicle_make}}</span></td>
+                    <td>Vehicle Make</td>
+                    <td><span style="font-weight: 700;">{{gps_vehicle.vehicle_make}}</span></td>
                 </tr>
                 <tr>
-                    <td>Vehicle Model <span style="font-weight: 700;">{{gps_vehicle.vehicle_model}}</span></td>
+                    <td>Vehicle Model</td>
+                    <td><span style="font-weight: 700;">{{gps_vehicle.vehicle_model}}</span></td>
                 </tr>
                 <tr>
-                    <td>Registration No <span style="font-weight: 700;">{{gps_vehicle.registration_no}}</span></td>
+                    <td>Registration No</td>
+                    <td><span style="font-weight: 700;">{{gps_vehicle.registration_no}}</span></td>
                 </tr>
                 <tr>
-                    <td>Chassis No <span style="font-weight: 700;">{{gps_vehicle.chassis_no}}</span></td>
-                </tr>
-                <tr>
-                    <td>Network <span style="font-weight: 700;">{{gps_vehicle.network}}</span></td>
+                    <td>Chassis No</td>
+                    <td><span style="font-weight: 700;">{{gps_vehicle.chassis_no}}</span></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-
-    <table class="table single-borderd-table mb-0">
+    <table class="details-table single-bordered-table mb-0">
         <thead>
             <tr>
-                <th style="font-size: 13px;text-align: center;">DEALER DETAIL</th>
-                <th colspan="2" style="font-size: 13px;text-align: center;">CUSTOMER DETAIL</th>
+                <th colspan="2" class="section-title">DEALER DETAIL</th>
+                <th colspan="2" class="section-title">CUSTOMER DETAIL</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Dealer <span style="font-weight: 700;">{{gps_vehicle.dealer}}</span></td>
-                <td>Customer Name<span style="font-weight: 700;">{{gps_vehicle.customer_name}}</span></td>
+                <td>Dealer</td>
+                <td><span style="font-weight: 700;">{{gps_vehicle.dealer}}</span></td>
+                <td>Customer Name</td>
+                <td><span style="font-weight: 700;">{{gps_vehicle.customer_name}}</span></td>
             </tr>
             <tr>
-                <td>DATE<span style="font-weight: 700;">{{gps_vehicle.created_at | date:"d-F-Y"}}</span></td>
-                <td>Address<span style="font-weight: 700;">{{gps_vehicle.customer_address}}</span></td>
+                <td>Date</td>
+                <td><span style="font-weight: 700;">{{ gps_vehicle.created_at | date:"d-F-Y" }}</span></td>
+                <td>Address</td>
+                <td><span style="font-weight: 700;">{{ gps_vehicle.customer_address }}</span></td>
             </tr>
             <tr>
-                <td>Time<span style="font-weight: 700;">12:09:19am</span></td>
-                <td>Location<span style="font-weight: 700;">{{gps_vehicle.location_primary}}</span></td>
+                <td>Time</td>
+                <td><span style="font-weight: 700;">{{ gps_vehicle.time }}</span></td>
+                <td>Location</td>
+                <td><span style="font-weight: 700;">{{ gps_vehicle.location_primary }}</span></td>
             </tr>
             <tr>
-                <td>Location<span style="font-weight: 700;">{{gps_vehicle.location_secondary}}</span></td>
-                <td>Mobile No<span style="font-weight: 700;">{{gps_vehicle.mobile_no}}</span></td>
-            </tr>
-            <tr>
-                <td>Network <span style="font-weight: 700;">{{gps_vehicle.network}}</span></td>
-                <td><span style="font-weight: 700;"></span></td>
+                <td>Location</td>
+                <td><span style="font-weight: 700;">{{gps_vehicle.location_secondary}}</span></td>
+                <td>Mobile No</td>
+                <td><span style="font-weight: 700;">{{gps_vehicle.mobile_no}}</span></td>
             </tr>
         </tbody>
     </table>
 
-    <table class="table single-bordered-table mb-1">
+    <table class="details-table table single-bordered-table mb-1">
         <tbody class="mb-3">
             <tr>
                 <td>
-                    <p class="mt-4">
+                    <p class="mt-4 lh-1" style="font-size: 15px;">
                         This is certifying that following vehicle has been fitted and activated with <br> approved Volty
                         Soft Vehicle
                         Location Tracking Device as per Standard which is <br> activated live tracking and more
                         features, unless the
                         device tampered or the seal <br> is Broken by unauthorized technicians or individual.
                     </p>
-                    <p class="text-end" style="margin-right: 30px;">
+                    <p class="text-end" style="margin-right: 30px;font-weight: 600;font-size: 15px;">
                         RTA/RTO/STA Signature
                     </p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <p class="mt-3">
-                        This is to Acknowledge and confirm that we have got our vehicle fitted <br> with above vehicle
+                    <p class="mt-3 lh-1" style="font-size: 15px;">
+                        This is to Acknowledge and confirm that we have got our vehicle fitted with <br> above vehicle
                         location tracking unit.
                         We have checked the performance of the <br> vehicle after fitment and we confirm GPS is
                         functioning as per norms laid
@@ -258,11 +231,11 @@
                         found broken/torn/tampered/
                         after expiry & <br> Warranty date issues.
                     </p>
-                    <p class="text-end" style="margin-right: 50px;">
+                    <p class="text-end" style="margin-right: 50px;font-weight: 600;font-size: 15px;">
                         Dealer Signature
                     </p>
 
-                    <p class="text-center">
+                    <p class="text-center" style="font-weight: 600;font-size: 15px;">
                         Customer Signature
                     </p>
                 </td>

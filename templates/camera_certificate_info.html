@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} RTO || Camera Certificate_Info {% endblock title %}
+{% block title %} RTO || Camera Certificate {% endblock title %}
 {% block link %}{% static 'css/certificate_view.css' %}{% endblock link %}
 {% block content %}
 
@@ -53,10 +53,6 @@
 </style>
 
 <div class="container">
-    <div class="text-center mb-4">
-        <button id="printButton" onclick="window.print();" class="btn btn-primary">Print</button>
-    </div>
-
 
     <div class="header d-flex justify-content-between align-items-center mb-4">
         <img src="{% static 'images/logo.png' %}" alt="SM Logo" class="logo">
@@ -64,6 +60,7 @@
             <h1 class="mb-0" style="color: black;font-weight: bold;">SE TECHNOLOGIES</h1><br>
             <h2 class="mb-0" style="color: black;font-weight: 650;">VEHICLE CCTV CAMERA ONLINE FITMENT CERTIFICATE</h2>
         </div>
+
     </div>
 
     <div class="section d-flex justify-content-between" style="font-size: 11px;">
@@ -74,7 +71,6 @@
             The Regional Transport Authority <br>
 
             <strong>{{camera_vehicle.rto}}</strong>
-
         </div>
         <div class="text-start">
 

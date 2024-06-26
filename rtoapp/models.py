@@ -63,6 +63,9 @@ class cameraVehicle(models.Model):
     Display_image = models.ImageField(upload_to='vehicle_images/',null=True)
     created_at = models.DateTimeField(auto_now_add=True,null=True)
 
+    def __self__(self):
+        return self.vehicle_no
+
 class gpsVehicle(models.Model):
     invoice_no = models.CharField(max_length=100)
     gps_serial_no = models.CharField(max_length=100,null=True)
@@ -80,7 +83,11 @@ class gpsVehicle(models.Model):
     customer_address = models.CharField(max_length=100,null=True)
     location_secondary = models.CharField(max_length=100)
     mobile_no = models.CharField(max_length=100,null=True)
+    time = models.TimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True,null=True)
+
+    def __str__(self):
+        return self.gps_serial_no
 
 
 

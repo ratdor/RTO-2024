@@ -76,10 +76,10 @@
                         <tbody>
                             {% for gps_vehicle in gps_vehicles %}
                             <tr>
-                                <td>{{gps_vehicle.id}}</td>
-                                <td><a href="{% url 'gps_certificate' gps_vehicle.id %}">{{gps_vehicle.invoice_no}}</a></td>
+                                <td>{{ gps_vehicle.id }}</td>
+                                <td><a href="{% url 'gps_certificate' gps_vehicle.id gps_vehicle.time %}">{{ gps_vehicle.invoice_no }}</a></td>
                                 <td>{{ gps_vehicle.created_at|date:"d/m/Y" }}</td>
-                                <td><a class="btn btn-success" href="{% url 'gps_certificate' gps_vehicle.id %}">View</a></td>
+                                <td><a class="btn btn-success" href="{% url 'gps_certificate' gps_vehicle.id gps_vehicle.time %}">View</a></td>
                             </tr>
                             {% endfor %}
                         </tbody>

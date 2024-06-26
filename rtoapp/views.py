@@ -4,6 +4,7 @@ from .forms import VehicleForm,cameraVehicleForm,GpsVehicleForm
 from django.urls import reverse
 from .forms import LoginForm
 from .models import Vehicle,cameraVehicle,gpsVehicle
+from django.utils import timezone
 from io import BytesIO
 import qrcode
 import base64
@@ -99,14 +100,22 @@ def gps_details(request):
     if request.method == 'POST':
         form = GpsVehicleForm(request.POST, request.FILES)
         if form.is_valid():
+            current_time = timezone.localtime().time()  # Get current time
+            form.instance.time = current_time  # Assign current time to the instance
             form.save()
+            
+            # Redirect to gps_search after saving the form
             return redirect('gps_search')
         else:
             print("Form is not valid:")
             print(form.errors)  # Print form errors for debugging
     else:
         form = GpsVehicleForm()
-    return render(request, 'gps_details.html', {'form': form})
+    
+    context = {
+        'form': form,
+    }
+    return render(request, 'gps_details.html', context)
 
 
 def gps_search(request):
@@ -129,15 +138,17 @@ def gps_search(request):
         gps_vehicles = gpsVehicle.objects.all()
         return render(request, 'gps_search.html', {'gps_vehicles': gps_vehicles})
 
-def gps_certificate_info(request, gps_unique_identifier):
-    gps_vehicle = get_object_or_404(gpsVehicle, id=gps_unique_identifier)
-    return render(request, 'gps_certificate_info.html', {'gps_vehicle': gps_vehicle})
+def gps_certificate_info(request,gps_unique_identifier):
+    gps_vehicle = get_object_or_404(gpsVehicle,id=gps_unique_identifier)
+    return render(request,'gps_certificate_info.html',{'gps_vehicle': gps_vehicle})
 
-def gps_certificate(request, vehicle_id):
+
+def gps_certificate(request, vehicle_id, current_time):
+    # Retrieve the GPS vehicle object using vehicle_id
     gps_vehicle = get_object_or_404(gpsVehicle, id=vehicle_id)
 
     # Build URL for gps_certificate_info view
-    gps_certificate_info_url = request.build_absolute_uri(reverse('gps_certificate_info', kwargs={'gps_unique_identifier': vehicle_id}))
+    gps_certificate_info_url = request.build_absolute_uri(reverse('gps_certificate_info', kwargs={'gps_unique_identifier': gps_vehicle.id}))
 
     # Generate QR code
     qr = qrcode.QRCode(
@@ -155,7 +166,6 @@ def gps_certificate(request, vehicle_id):
     qr_code_base64 = base64.b64encode(qr_code_img.getvalue()).decode()
     
     return render(request, 'gps_certificate.html', {'qr_code_base64': qr_code_base64, 'gps_vehicle': gps_vehicle})
-
 
 ################################################### End GPS Certificate ################################################
 
