@@ -7,13 +7,33 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav gap-3 ms-auto">
-                {% if request.path == '/camera_details/' %}
-                    <li><a class="nav-link text-primary fw-medium" href="{% url 'camera_search' %}">Vehicles</a></li>
-                {% elif request.path == '/gps_details/' %}
-                    <li><a class="nav-link text-primary fw-medium" href="{% url 'gps_search' %}">Vehicles</a></li>
-                {% else %}
-                    <li><a class="nav-link text-primary fw-medium" href="{% url 'search_view' %}">Vehicles</a></li>
+                {% if request.path == '/camera_search/' or request.path == '/camera_details/' %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/camera_details/' %}text-primary fw-medium{% else %}text-primary fw-medium{% endif %}" href="{% url 'camera_details' %}">Camera Form</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/camera_search/' %}text-primary fw-medium{% else %}text-primary fw-medium{% endif %}" href="{% url 'camera_search' %}">Camera Vehicles</a>
+                </li>
                 {% endif %}
+
+                {% if request.path == '/gps_search/' or request.path == '/gps_details/' %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/gps_details/' %}text-primary fw-medium{% else %}text-primary fw-medium{% endif %}" href="{% url 'gps_details' %}">GPS Form</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/gps_search/' %}text-primary fw-medium{% else %}text-primary fw-medium{% endif %}" href="{% url 'gps_search' %}">GPS Vehicles</a>
+                </li>
+                {% endif %}
+
+                {% if request.path == '/search_view/' or request.path == '/details_view/' %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/details_view/' %}text-primary fw-medium{% else %}text-dark{% endif %}" href="{% url 'details_view' %}">Details View</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/search_view/' %}text-primary fw-medium{% else %}text-dark{% endif %}" href="{% url 'search_view' %}">Search View</a>
+                    </li>
+                {% endif %}
+
                 <li><a class="nav-link text-primary fw-medium" href="{% url 'logout' %}">Logout</a></li>
             </ul>            
         </div>

@@ -3,6 +3,24 @@
 {% block title %} RT0 || Fitment {% endblock title %}
 {% block content %}
 
+<style>
+    /* Custom CSS goes here */
+    .container {
+        margin-top: 50px;
+    }
+    #DisplayForm {
+        max-width: 400px;
+        margin: auto;
+    }
+    #fitmentForm {
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px;
+        box-shadow: 0px 5px 5px ;
+        background-color:chartreuse;
+    }
+</style>
+
 <div class="container">
     <form id="DisplayForm" method="get">
         {% csrf_token %}
