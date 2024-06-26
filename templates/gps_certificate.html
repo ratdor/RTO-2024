@@ -120,7 +120,7 @@
         <div class="text-center">
             <h1 class="mb-0" style="color: black;font-weight: bold;">SE TECHNOLOGIES</h1><br>
             <p class="mb-0" style="color: black;">Online Vehicle Tracking Device Certificate</p>
-            <h4>Certificate No.: <span>CF-30-Jan-2024GLInvoice No</span></h4>
+            <h4 style="border:1px solid black;width:490px;padding-bottom:20px;border-radius:20px">Certificate.NO. <span>CF-{{gps_vehicle.created_at | date:"dmY"}}{{gps_vehicle.gps_serial_no}}</span></h4>
         </div>
         <img src="{% static 'images/logo.png' %}" alt="SM Logo" class="logo">
 
@@ -134,13 +134,13 @@
 
             The Regional Transport Authority <br>
 
-            <strong>TN76</strong>
+            <strong>{{gps_vehicle.location_primary}}</strong>
         </div>
         <div class="text-start">
 
-            Certificate Issued Date: <span><b>30-Jan-2024</b></span><br>
-            Invoice No : <span><b>{{gps_vehicle.invoice_no}}</b></span>
-            Vality Till : 30.01.2025
+            Certificate Issued Date: <span><b>{{gps_vehicle.created_at | date:"d-F-Y"}}</b></span><br>
+            Invoice No : <span><b>{{gps_vehicle.invoice_no}}</b></span><br>
+            Vality Till : {{ gps_vehicle.created_at|date:"d.m.Y" }}
 
         </div>
     </div>
@@ -208,18 +208,18 @@
         <tbody>
             <tr>
                 <td>Dealer <span style="font-weight: 700;">{{gps_vehicle.dealer}}</span></td>
-                <td>Customer Name<span style="font-weight: 700;">{{gps_vehicle.owner_name}}</span></td>
+                <td>Customer Name<span style="font-weight: 700;">{{gps_vehicle.customer_name}}</span></td>
             </tr>
             <tr>
-                <td>DATE<span style="font-weight: 700;"> 31-Jan-2024</span></td>
-                <td>Address<span style="font-weight: 700;">{{gps_vehicle.owner_address}}</span></td>
+                <td>DATE<span style="font-weight: 700;">{{gps_vehicle.created_at | date:"d-F-Y"}}</span></td>
+                <td>Address<span style="font-weight: 700;">{{gps_vehicle.customer_address}}</span></td>
             </tr>
             <tr>
                 <td>Time<span style="font-weight: 700;">12:09:19am</span></td>
-                <td>Location<span style="font-weight: 700;">{{gps_vehicle.location}}</span></td>
+                <td>Location<span style="font-weight: 700;">{{gps_vehicle.location_primary}}</span></td>
             </tr>
             <tr>
-                <td>Location<span style="font-weight: 700;">{{gps_vehicle.location}}</span></td>
+                <td>Location<span style="font-weight: 700;">{{gps_vehicle.location_secondary}}</span></td>
                 <td>Mobile No<span style="font-weight: 700;">{{gps_vehicle.mobile_no}}</span></td>
             </tr>
             <tr>

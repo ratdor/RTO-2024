@@ -25,15 +25,15 @@
                 </li>
                 {% endif %}
 
-                {% if request.path == '/search_view/' or request.path == '/details_view/' %}
+                {% if request.path == '/search/' or request.path == '/details/' %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/details/'%}text-primary fw-medium{% else %}text-primary fw-medium{% endif %}" href="{% url 'details_view' %}">Details Form</a>
+                </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/details_view/' %}text-primary fw-medium{% else %}text-dark{% endif %}" href="{% url 'details_view' %}">Details View</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/search_view/' %}text-primary fw-medium{% else %}text-dark{% endif %}" href="{% url 'search_view' %}">Search View</a>
+                        <a class="nav-link {% if request.path == '/search/' %}text-primary fw-medium{% else %}text-primary fw-medium{% endif %}" href="{% url 'search_view' %}">Sensor Vehicles</a>
                     </li>
                 {% endif %}
-
+                <li><a class="nav-link text-primary fw-medium" href="{% url 'fitment' %}">Fitment</a></li>
                 <li><a class="nav-link text-primary fw-medium" href="{% url 'logout' %}">Logout</a></li>
             </ul>            
         </div>

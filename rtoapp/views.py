@@ -28,6 +28,9 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
+################################################### Sensor Certificate ################################################
+
+
 def details_view(request):
     if request.method == 'POST':
         form = VehicleForm(request.POST,request.FILES)
@@ -87,6 +90,9 @@ def fitment(request):
     return render(request,'fitment.html')
 
 
+################################################### End Sensor Certificate ################################################
+
+
 ################################################### GPS Certificate ################################################
 
 def gps_details(request):
@@ -107,15 +113,15 @@ def gps_search(request):
     if request.method == 'POST':
         from_date = request.POST.get('from_date')
         to_date = request.POST.get('to_date')
-        vecregno = request.POST.get('vecregno')
+        invoice_no  = request.POST.get('vecregno')
         
         gps_vehicles = gpsVehicle.objects.all()
 
         if from_date and to_date:
             gps_vehicles = gps_vehicles.filter(created_at__gte=from_date, created_at__lte=to_date)
 
-        if vecregno:
-            gps_vehicles = gps_vehicles.filter(registration_no__icontains=vecregno)
+        if invoice_no:
+            gps_vehicles = gps_vehicles.filter(invoice_no__icontains=invoice_no)
 
         return render(request, 'gps_search.html', {'gps_vehicles': gps_vehicles})
     
@@ -151,6 +157,7 @@ def gps_certificate(request, vehicle_id):
     return render(request, 'gps_certificate.html', {'qr_code_base64': qr_code_base64, 'gps_vehicle': gps_vehicle})
 
 
+################################################### End GPS Certificate ################################################
 
 
 ################################################### Camera Certificate ################################################
@@ -169,17 +176,17 @@ def camera_search(request):
     if request.method == 'POST':
         from_date = request.POST.get('from_date')
         to_date = request.POST.get('to_date')
-        vecregno = request.POST.get('vecregno')
+        vehicle_no = request.POST.get('vecregno')
         
         camera_vehicles = cameraVehicle.objects.all()
 
         if from_date and to_date:
             camera_vehicles = camera_vehicles.filter(created_at__gte=from_date, created_at__lte=to_date)
 
-        if vecregno:
-            camera_vehicles = camera_vehicles.filter(vehicle_no__icontains=vecregno)
+        if vehicle_no:
+            camera_vehicles = camera_vehicles.filter(vehicle_no__icontains=vehicle_no)
 
-        return render(request, 'search.html', {'camera_vehicles': camera_vehicles})
+        return render(request, 'camera_search.html', {'camera_vehicles': camera_vehicles})
     
     else:
         camera_vehicles = cameraVehicle.objects.all()
@@ -213,4 +220,5 @@ def camera_certificate(request, vehicle_id):
     
     return render(request, 'camera_certificate.html', {'qr_code_base64': qr_code_base64, 'camera_vehicle': camera_vehicle})
 
+################################################### End Camera Certificate ################################################
 
