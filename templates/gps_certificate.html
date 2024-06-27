@@ -14,6 +14,22 @@
             box-sizing: border-box;
         }
 
+        .inset11 {
+            position: relative;
+            border-top: 1px solid black;
+            border-right: 0;
+            border-left: 1px solid black;
+            width: 230px;
+        }
+
+        .inset12 {
+            position: relative;
+            border-top: 1px solid black;
+            border-left: 0;
+            border-right: 1px solid black;
+            width: 225px;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -37,6 +53,7 @@
 
         .header .qr-code {
             width: 130px;
+            height: 130px;
         }
 
         table tr,
@@ -44,6 +61,17 @@
         td {
             font-size: 16px;
         }
+
+        .certificate-number {
+            border: 0.5px solid black;
+            width: 470px;
+            padding-bottom: 20px;
+            border-radius: 50px;
+            margin-bottom: 0;
+            text-align: center;
+            font-size: 19px;
+        }
+
 
         #printButton {
             display: none;
@@ -71,7 +99,6 @@
         text-align: center;
         font-weight: bold;
     }
-
 </style>
 
 <div class="d-flex justify-content-center mt-4">
@@ -85,89 +112,133 @@
             style="align-self: flex-start;">
         <div class="text-center" style="flex: 1;">
             <h1 class="mb-0" style="color: black; font-weight: bold;">S.E TECHNOLOGIES</h1>
-            <p class="mb-0 mt-3" style="color: black;">Online Vehicle Tracking Device Certificate</p>
+            <p class="mb-0 mt-3 online" style="color: black;">Online Vehicle Tracking Device Certificate</p>
             <div class="d-flex justify-content-center">
                 <h4 class="certificate-number">
                     Certificate.NO. <span style="font-weight: 700;">CF-{{gps_vehicle.created_at | date:"dmY"}}{{gps_vehicle.gps_serial_no}}</span>
                 </h4>
             </div>
-            
+
         </div>
         <img src="{% static 'images/logo.png' %}" alt="SM Logo" class="logo" style="align-self: flex-start;">
     </div>
 
     <div class="section d-flex justify-content-between mb-4" style="font-size: 11px;">
-        <div class="text-start">
-            <strong style="font-size: 16px;"> To </strong> <br>
-            <span style="font-size: 15px;">The Regional Transport Authority</span> <br>
-            <strong style="font-size: 15px;">{{gps_vehicle.location_secondary}}</strong>
+        <div class="text-start regional">
+            <strong> To </strong> <br>
+            <span>The Regional Transport Authority</span> <br>
+            <strong>{{gps_vehicle.location_secondary}}</strong>
         </div>
-        <div class="text-start me-5" style="font-size: 15px;">
+        <div class="text-start me-5 certified">
             Certificate Issued Date: <span><b>{{gps_vehicle.created_at | date:"d-F-Y"}}</b></span><br>
             Invoice No : <span><b>{{gps_vehicle.invoice_no}}</b></span><br>
             Validity Till : {{ gps_vehicle.created_at|date:"d.m.Y" }}
         </div>
     </div>
 
-    <div class="mt-4" style="display: flex; justify-content: space-between;">
+    <div class="mt-4 details-container" style="display: flex; justify-content: space-between;">
         <table class="details-table mb-5" style="flex: 1; margin-right: 1px;max-width: 300px;">
             <thead>
                 <tr>
                     <th colspan="2" class="section-title">Details</th>
                 </tr>
             </thead>
-            <tbody class="single-bordered-table mb-5">
+            <tbody class="mb-5">
                 <tr>
-                    <td>GPS Serial No</td>
-                    <td><span style="font-weight: 700;">{{gps_vehicle.gps_serial_no}}</span></td>
+                    <td>
+                        <p class="inset">GPS Serial No</p>
+                    </td>
+                    <td>
+                        <p class="inset2" style="font-weight: 700;">{{gps_vehicle.gps_serial_no}}</p>
+                    </td>
                 </tr>
                 <tr>
-                    <td>GPS Model</td>
-                    <td><span style="font-weight: 700;">{{gps_vehicle.gps_model}}</span></td>
+                    <td>
+                        <p class="inset3">GPS Model</p>
+                    </td>
+                    <td>
+                        <p class="inset4" style="font-weight: 700;">{{gps_vehicle.gps_model}}</p>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Registration Date</td>
-                    <td><span style="font-weight: 700;">{{gps_vehicle.registration_date}}</span></td>
+                    <td>
+                        <p class="inset5">Registration Date</p>
+                    </td>
+                    <td>
+                        <p class="inset6" style="font-weight: 700;">{{gps_vehicle.registration_date}}</p>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Engine No</td>
-                    <td><span style="font-weight: 700;">{{gps_vehicle.engine_no}}</span></td>
+                    <td>
+                        <p class="inset7">Engine No</p>
+                    </td>
+                    <td>
+                        <p class="inset8" style="font-weight: 700;">{{gps_vehicle.engine_no}}</p>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Network</td>
-                    <td><span style="font-weight: 700;">{{gps_vehicle.network}}</span></td>
+                    <td>
+                        <p class="inset9">Network</p>
+                    </td>
+                    <td>
+                        <p class="inset10" style="font-weight: 700;">{{gps_vehicle.network}}</p>
+                    </td>
                 </tr>
             </tbody>
         </table>
 
-        <table class="details-table mb-5" style="flex: 1; margin-left: 1px;">
+        <table class="details-table detail_table mb-5" style="flex: 1; margin-left: 0px;">
             <thead>
                 <tr>
                     <th colspan="2" class="section-title">Vehicle Details</th>
                 </tr>
             </thead>
-            <tbody class="single-bordered-table">
+            <tbody>
                 <tr>
-                    <td>Vehicle Make</td>
-                    <td><span style="font-weight: 700;">{{gps_vehicle.vehicle_make}}</span></td>
+                    <td>
+                        <p class="inset11">Vehicle Make</p>
+                    </td>
+                    <td>
+                        <p class="inset12" style="font-weight: 700;">{{gps_vehicle.vehicle_make}}</p>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Vehicle Model</td>
-                    <td><span style="font-weight: 700;">{{gps_vehicle.vehicle_model}}</span></td>
+                    <td>
+                        <p class="inset13">Vehicle Model</p>
+                    </td>
+                    <td>
+                        <p class="inset14" style="font-weight: 700;">{{gps_vehicle.vehicle_model}}</p>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Registration No</td>
-                    <td><span style="font-weight: 700;">{{gps_vehicle.registration_no}}</span></td>
+                    <td>
+                        <p class="inset15">Registration No</p>
+                    </td>
+                    <td>
+                        <p class="inset16" style="font-weight: 700;">{{gps_vehicle.registration_no}}</p>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Chassis No</td>
-                    <td><span style="font-weight: 700;">{{gps_vehicle.chassis_no}}</span></td>
+                    <td>
+                        <p class="inset17">Chassis No</p>
+                    </td>
+                    <td>
+                        <p class="inset18" style="font-weight: 700;">{{gps_vehicle.chassis_no}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="inset19">Network</p>
+                    </td>
+                    <td>
+                        <p class="inset20" style="font-weight: 700;">{{gps_vehicle.network}}</p>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <table class="details-table single-bordered-table mb-0">
+    <table class="details-table single-bordered-table mb-0" style="margin-top: -80px;">
         <thead>
             <tr>
                 <th colspan="2" class="section-title">DEALER DETAIL</th>

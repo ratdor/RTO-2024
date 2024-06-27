@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} RTO || GPS Certificate {% endblock title %}
+{% block content %}
+
+<style>
+    .inset{
+        position:relative;
+        border-top: 1px solid black;
+        border-right: 0;
+        border-left: 1px solid black;
+        width: 150px;
+    }
+    .inset2{
+        position: relative;
+        border-top: 1px solid black;
+        border-left: 0;
+        border-right: 1px solid black;
+        width: 150px;
+    }
+    .inset3{
+        position: relative;
+        border-left: 1px solid black;
+        bottom: 10px;
+    }
+    .inset4{
+        position: relative;
+        border-right: 1px solid black;
+        bottom: 10px;
+    }
+</style>
+
+<table class="mt-5 ms-4">
+    <tbody>
+        <tr>
+            <td>
+                <p class="inset">An inset border.</p>
+            </td>
+            <td>
+                <p class="inset2">An inset border.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="inset3">An inset border.</p>
+            </td>
+            <td>
+                <p class="inset4">An inset border.</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock content %}

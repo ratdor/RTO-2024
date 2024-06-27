@@ -32,12 +32,20 @@
     text-align: center;
     font-size: 19px;
 }
-.details-table{
+
+.details-table {
     font-size: 15px;
 }
-
-
-@media (max-width: 767px) {
+.online{
+    font-size: 16px;
+}
+.certified{
+    font-size: 15px;
+}
+.regional{
+    font-size: 15px;
+}
+@media (max-width: 710px) {
 
     .table th,
     .table td {
@@ -61,15 +69,116 @@
     }
 
     .header .qr-code {
-        width: 50px;
+        width: 70px;
+        height: 70px;
     }
 
     .logo {
         width: 60px;
     }
 
-}
+    .certificate-number {
+        font-size: 9px;
+        width: 190px;
+        padding-bottom: 5px;
 
+    }
+    .online{
+        font-size: 10px;
+    }
+    .details-container {
+        flex-direction: column;
+    }
+    .details-table {
+        margin: 0 0 10px 0; /* Adjust margins as needed */
+        max-width: 100%; /* Allow table to take full width */
+    }
+    .detail_table{
+        margin-top: -84px;
+    }
+    .certified{
+        margin-left: 50px;
+        font-size: 9px;
+    }
+    .regional{
+        font-size: 9px;
+    }
+    .inset11 {
+        position: relative;
+        border-top: 1px solid black;
+        border-right: 0;
+        border-left: 1px solid black;
+        max-width: 168px;
+    }
+    
+    .inset12 {
+        position: relative;
+        border-top: 1px solid black;
+        border-left: 0;
+        border-right: 1px solid black;
+        max-width: 168px;
+    }
+    
+    .inset13 {
+        position: relative;
+        border-left: 1px solid black;
+        bottom: 6px;
+        max-width: 168px;
+    }
+    
+    .inset14 {
+        position: relative;
+        border-right: 1px solid black;
+        bottom: 6px;
+        max-width: 168px;
+    }
+    
+    .inset15 {
+        position: relative;
+        border-left: 1px solid black;
+        bottom: 3px;
+        max-width: 168px;
+    }
+    
+    .inset16 {
+        position: relative;
+        border-right: 1px solid black;
+        bottom: 3px;
+        max-width:168px;
+    }
+    
+    .inset17 {
+        position: relative;
+        border-left: 1px solid black;
+        bottom: 5px;
+        max-width: 168px;
+    }
+    
+    .inset18 {
+        position: relative;
+        border-right: 1px solid black;
+        bottom: 5px;
+        max-width: 168px;
+    }
+    
+    .inset19 {
+        position: relative;
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+        bottom: 6px;
+        max-width: 168px;
+        color: white;
+    }
+    
+    .inset20 {
+        position: relative;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+        bottom: 6px;
+        max-width: 168px;
+        color: white;
+    }
+}
 
 @media print {
 
@@ -80,4 +189,138 @@
         padding: 2px;
         font-size: 10px;
     }
+}
+
+.inset {
+    position: relative;
+    border-top: 1px solid black;
+    border-right: 0;
+    border-left: 1px solid black;
+    width: 150px;
+}
+
+.inset2 {
+    position: relative;
+    border-top: 1px solid black;
+    border-left: 0;
+    border-right: 1px solid black;
+    width: 150px;
+}
+
+.inset3 {
+    position: relative;
+    border-left: 1px solid black;
+    bottom: 16px;
+}
+
+.inset4 {
+    position: relative;
+    border-right: 1px solid black;
+    bottom: 16px;
+}
+
+.inset5 {
+    position: relative;
+    border-left: 1px solid black;
+    bottom: 33px;
+}
+
+.inset6 {
+    position: relative;
+    border-right: 1px solid black;
+    bottom: 33px;
+}
+
+.inset7 {
+    position: relative;
+    border-left: 1px solid black;
+    bottom: 50px;
+}
+
+.inset8 {
+    position: relative;
+    border-right: 1px solid black;
+    bottom: 50px;
+}
+
+.inset9 {
+    position: relative;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    bottom: 67px;
+}
+
+.inset10 {
+    position: relative;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    bottom: 67px;
+}
+
+.inset11 {
+    position: relative;
+    border-top: 1px solid black;
+    border-right: 0;
+    border-left: 1px solid black;
+    width: 350px;
+}
+
+.inset12 {
+    position: relative;
+    border-top: 1px solid black;
+    border-left: 0;
+    border-right: 1px solid black;
+    width: 470px;
+}
+
+.inset13 {
+    position: relative;
+    border-left: 1px solid black;
+    bottom: 16px;
+}
+
+.inset14 {
+    position: relative;
+    border-right: 1px solid black;
+    bottom: 16px;
+}
+
+.inset15 {
+    position: relative;
+    border-left: 1px solid black;
+    bottom: 33px;
+}
+
+.inset16 {
+    position: relative;
+    border-right: 1px solid black;
+    bottom: 33px;
+}
+
+.inset17 {
+    position: relative;
+    border-left: 1px solid black;
+    bottom: 50px;
+}
+
+.inset18 {
+    position: relative;
+    border-right: 1px solid black;
+    bottom: 50px;
+}
+
+.inset19 {
+    position: relative;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    bottom: 67px;
+    color: white;
+}
+
+.inset20 {
+    position: relative;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    bottom: 67px;
+    color: white;
 }

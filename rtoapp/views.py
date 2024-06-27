@@ -232,3 +232,5 @@ def camera_certificate(request, vehicle_id):
 
 ################################################### End Camera Certificate ################################################
 
+def html(request):
+    return render(request,'html.html')

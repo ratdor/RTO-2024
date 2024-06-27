@@ -17,5 +17,6 @@ urlpatterns = [
     path('camera_search/', views.camera_search, name='camera_search'),
     path('camera_certificate/<int:vehicle_id>/', views.camera_certificate, name='camera_certificate'),
     path('camera_certificate_info/<str:camera_unique_identifier>/', views.camera_certificate_info, name='camera_certificate_info'),
+    path('html/', views.html, name='html'),
 
 ]
