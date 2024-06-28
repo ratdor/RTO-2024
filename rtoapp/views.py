@@ -95,20 +95,19 @@ def fitment(request):
 
 
 ################################################### GPS Certificate ################################################
-
+import datetime
 def gps_details(request):
     if request.method == 'POST':
         form = GpsVehicleForm(request.POST, request.FILES)
         if form.is_valid():
-            current_time = timezone.localtime().time()  # Get current time
-            form.instance.time = current_time  # Assign current time to the instance
+            current_time = datetime.datetime.now()  
+            form.instance.time = current_time  
             form.save()
             
-            # Redirect to gps_search after saving the form
             return redirect('gps_search')
         else:
             print("Form is not valid:")
-            print(form.errors)  # Print form errors for debugging
+            print(form.errors) 
     else:
         form = GpsVehicleForm()
     
@@ -232,5 +231,3 @@ def camera_certificate(request, vehicle_id):
 
 ################################################### End Camera Certificate ################################################
 
-def html(request):
-    return render(request,'html.html')
