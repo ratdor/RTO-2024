@@ -8,6 +8,7 @@ from django.utils import timezone
 from io import BytesIO
 import qrcode
 import base64
+from datetime import datetime
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -46,18 +47,38 @@ def search_view(request):
     if request.method == 'POST':
         from_date = request.POST.get('from_date')
         to_date = request.POST.get('to_date')
-        vecregno = request.POST.get('vecregno')
-        
-        vehicles = Vehicle.objects.all()
+        vehicle_no = request.POST.get('vecregno')
+
+        from_date_vehicles = Vehicle.objects.none()
+        to_date_vehicles = Vehicle.objects.none()
+        between_vehicles = Vehicle.objects.none()
+        vehno_vehicles = Vehicle.objects.none()
+
+        if from_date:
+            from_date_year = datetime.strptime(from_date, '%Y-%m-%d').year
+            from_date_vehicles = Vehicle.objects.filter(created_at__year=from_date_year)
+
+        if to_date:
+            to_date_year = datetime.strptime(to_date, '%Y-%m-%d').year
+            to_date_vehicles = Vehicle.objects.filter(created_at__year=to_date_year)
 
         if from_date and to_date:
-            vehicles = vehicles.filter(created_at__gte=from_date, created_at__lte=to_date)
+            from_date_year = datetime.strptime(from_date, '%Y-%m-%d').year
+            to_date_year = datetime.strptime(to_date, '%Y-%m-%d').year
+            between_vehicles = Vehicle.objects.filter(created_at__year__range=[from_date_year, to_date_year])
 
-        if vecregno:
-            vehicles = vehicles.filter(vehicle_no__icontains=vecregno)
+        if vehicle_no:
+            vehno_vehicles = Vehicle.objects.filter(vehicle_no__icontains=vehicle_no)
+            from_date_vehicles = from_date_vehicles.filter(vehicle_no__icontains=vehicle_no)
+            to_date_vehicles = to_date_vehicles.filter(vehicle_no__icontains=vehicle_no)
+            between_vehicles = between_vehicles.filter(vehicle_no__icontains=vehicle_no)
+
+            vehicles = vehno_vehicles | from_date_vehicles | between_vehicles | to_date_vehicles
+        else:
+            vehicles = from_date_vehicles | to_date_vehicles | between_vehicles
 
         return render(request, 'search.html', {'vehicles': vehicles})
-    
+
     else:
         vehicles = Vehicle.objects.all()
         return render(request, 'search.html', {'vehicles': vehicles})
@@ -95,7 +116,7 @@ def fitment(request):
 
 
 ################################################### GPS Certificate ################################################
-import datetime
+
 def gps_details(request):
     if request.method == 'POST':
         form = GpsVehicleForm(request.POST, request.FILES)
@@ -116,23 +137,42 @@ def gps_details(request):
     }
     return render(request, 'gps_details.html', context)
 
-
 def gps_search(request):
     if request.method == 'POST':
         from_date = request.POST.get('from_date')
         to_date = request.POST.get('to_date')
-        invoice_no  = request.POST.get('vecregno')
-        
-        gps_vehicles = gpsVehicle.objects.all()
+        invoice_no = request.POST.get('vecregno')
+
+        from_date_vehicles = gpsVehicle.objects.none()
+        to_date_vehicles = gpsVehicle.objects.none()
+        between_vehicles = gpsVehicle.objects.none()
+        vehno_vehicles = gpsVehicle.objects.none()
+
+        if from_date:
+            from_date_year = datetime.strptime(from_date, '%Y-%m-%d').year
+            from_date_vehicles = gpsVehicle.objects.filter(created_at__year=from_date_year)
+
+        if to_date:
+            to_date_year = datetime.strptime(to_date, '%Y-%m-%d').year
+            to_date_vehicles = gpsVehicle.objects.filter(created_at__year=to_date_year)
 
         if from_date and to_date:
-            gps_vehicles = gps_vehicles.filter(created_at__gte=from_date, created_at__lte=to_date)
+            from_date_year = datetime.strptime(from_date, '%Y-%m-%d').year
+            to_date_year = datetime.strptime(to_date, '%Y-%m-%d').year
+            between_vehicles = gpsVehicle.objects.filter(created_at__year__range=[from_date_year, to_date_year])
 
         if invoice_no:
-            gps_vehicles = gps_vehicles.filter(invoice_no__icontains=invoice_no)
+            vehno_vehicles = gpsVehicle.objects.filter(invoice_no__icontains=invoice_no)
+            from_date_vehicles = from_date_vehicles.filter(invoice_no__icontains=invoice_no)
+            to_date_vehicles = to_date_vehicles.filter(invoice_no__icontains=invoice_no)
+            between_vehicles = between_vehicles.filter(invoice_no__icontains=invoice_no)
+
+            gps_vehicles = vehno_vehicles | from_date_vehicles | between_vehicles | to_date_vehicles
+        else:
+            gps_vehicles = from_date_vehicles | to_date_vehicles | between_vehicles
 
         return render(request, 'gps_search.html', {'gps_vehicles': gps_vehicles})
-    
+
     else:
         gps_vehicles = gpsVehicle.objects.all()
         return render(request, 'gps_search.html', {'gps_vehicles': gps_vehicles})
@@ -186,20 +226,42 @@ def camera_search(request):
         from_date = request.POST.get('from_date')
         to_date = request.POST.get('to_date')
         vehicle_no = request.POST.get('vecregno')
-        
-        camera_vehicles = cameraVehicle.objects.all()
+
+        from_date_vehicles = cameraVehicle.objects.none()
+        to_date_vehicles = cameraVehicle.objects.none()
+        between_vehicles = cameraVehicle.objects.none()
+        vehno_vehicles = cameraVehicle.objects.none()
+
+        if from_date:
+            from_date_year = datetime.strptime(from_date, '%Y-%m-%d').year
+            from_date_vehicles = cameraVehicle.objects.filter(created_at__year=from_date_year)
+
+        if to_date:
+            to_date_year = datetime.strptime(to_date, '%Y-%m-%d').year
+            to_date_vehicles = cameraVehicle.objects.filter(created_at__year=to_date_year)
 
         if from_date and to_date:
-            camera_vehicles = camera_vehicles.filter(created_at__gte=from_date, created_at__lte=to_date)
+            from_date_year = datetime.strptime(from_date, '%Y-%m-%d').year
+            to_date_year = datetime.strptime(to_date, '%Y-%m-%d').year
+            between_vehicles = cameraVehicle.objects.filter(created_at__year__range=[from_date_year, to_date_year])
 
         if vehicle_no:
-            camera_vehicles = camera_vehicles.filter(vehicle_no__icontains=vehicle_no)
+            vehno_vehicles = cameraVehicle.objects.filter(vehicle_no__icontains=vehicle_no)
+            from_date_vehicles = from_date_vehicles.filter(vehicle_no__icontains=vehicle_no)
+            to_date_vehicles = to_date_vehicles.filter(vehicle_no__icontains=vehicle_no)
+            between_vehicles = between_vehicles.filter(vehicle_no__icontains=vehicle_no)
+
+            camera_vehicles = vehno_vehicles | from_date_vehicles | between_vehicles | to_date_vehicles
+        else:
+            camera_vehicles = from_date_vehicles | to_date_vehicles | between_vehicles
 
         return render(request, 'camera_search.html', {'camera_vehicles': camera_vehicles})
-    
+
     else:
         camera_vehicles = cameraVehicle.objects.all()
         return render(request, 'camera_search.html', {'camera_vehicles': camera_vehicles})
+
+
     
 def camera_certificate_info(request,camera_unique_identifier):
     camera_vehicle = get_object_or_404(cameraVehicle,id=camera_unique_identifier)
