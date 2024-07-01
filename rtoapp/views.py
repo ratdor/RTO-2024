@@ -121,7 +121,7 @@ def gps_details(request):
     if request.method == 'POST':
         form = GpsVehicleForm(request.POST, request.FILES)
         if form.is_valid():
-            current_time = datetime.datetime.now()  
+            current_time = datetime.now()  
             form.instance.time = current_time  
             form.save()
             
@@ -292,4 +292,3 @@ def camera_certificate(request, vehicle_id):
     return render(request, 'camera_certificate.html', {'qr_code_base64': qr_code_base64, 'camera_vehicle': camera_vehicle})
 
 ################################################### End Camera Certificate ################################################
-
