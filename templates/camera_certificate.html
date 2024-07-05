@@ -35,11 +35,11 @@
         }
 
         .logo {
-            width: 170px;
+            width: 130px;
         }
 
         .header .qr-code {
-            width: 130px;
+            width: 110px;
         }
 
         table tr,th,td{
@@ -49,10 +49,13 @@
         #printButton {
             display: none;
         }
+        .table img {
+            height: 180px;
+        }
     }
 </style>
 
-<div class="d-flex justify-content-center mt-4">
+<div class="d-flex justify-content-center mt-4 table-responsive">
     <button id="printButton" onclick="window.print();" class="btn btn-primary mx-2">Print</button>
     <a id="printButton" href="{% url 'camera_search' %}" class="btn btn-primary mx-2">Back</a>
 </div>
@@ -71,7 +74,7 @@
 
     </div>
 
-    <div class="section d-flex justify-content-between" style="font-size: 11px;">
+    <div class="section d-flex justify-content-between headers" style="font-size: 11px;">
         <div class="text-start">
 
             <strong> To: </strong> <br>
@@ -89,199 +92,209 @@
         </div>
     </div>
 
-    <table class="table table-bordered mb-1">
+    <div class="table-responsive">
+        <table class="table table-bordered mb-1">
+            <tr>
+                <th colspan="2" style="border: 1px solid black;padding: 2px;font-size: 13px;">Vehicle Details</th>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Registration No : <span
+                        style="font-weight: 700;">{{camera_vehicle.vehicle_no}}</span></td>
+                <td style="border: 1px solid black;padding: 1px;">Registration Year : <span
+                        style="font-weight: 700;">{{camera_vehicle.registration_year}}</span></td>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Chassis No : <span
+                        style="font-weight: 700;">{{camera_vehicle.chassis_no}}</span></td>
+                <td style="border: 1px solid black;padding: 1px;">Engine No : <span
+                        style="font-weight: 700;">{{camera_vehicle.engine_no}}</span></td>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Vehicle Make : <span
+                        style="font-weight: 700;">{{camera_vehicle.vehicle_make}}</span></td>
+                <td style="border: 1px solid black;padding: 1px;">Vehicle Model : <span
+                        style="font-weight: 700;">{{camera_vehicle.vehicle_model}}</span></td>
+            </tr>
+    
+        </table>
+    </div>
 
-        <tr>
-            <th colspan="2" style="border: 1px solid black;padding: 2px;font-size: 13px;">Vehicle Details</th>
-        </tr>
+    <div class="table-responsive">
+        <table class="table table-bordered mb-1">
 
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Registration No : <span
-                    style="font-weight: 700;">{{camera_vehicle.vehicle_no}}</span></td>
-            <td style="border: 1px solid black;padding: 1px;">Registration Year : <span
-                    style="font-weight: 700;">{{camera_vehicle.registration_year}}</span></td>
-        </tr>
+            <tr>
+                <th colspan="1" style="border: 1px solid black;padding: 1px;">Vehicle Owner Details</th>
+                <th style="border: 1px solid black;padding: 1px;font-weight: 700;">Manufacturer Name :<span
+                        style="font-weight: 700;">{{camera_vehicle.manufacturer_name}}</span></th>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Owner Name / Company name : <span
+                        style="font-weight: 700;">{{camera_vehicle.owner_name}}</span> </td>
+                <td style="border: 1px solid black;padding: 1px;">Distributor Name : <span
+                        style="font-weight: 700;">{{camera_vehicle.distributor_name}}</span></td>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Mobile No : <span
+                        style="font-weight: 700;">{{camera_vehicle.mobile_no}}</span></td>
+                <td rowspan="2" style="border: 1px solid black;padding: 1px;">Distributor Address : <span
+                        style="font-weight: 700;">{{camera_vehicle.distributor_address}}</span></td>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Owner Address : <span
+                        style="font-weight: 700;">{{camera_vehicle.owner_address}}</span></td>
+            </tr>
+    
+        </table>
+    </div>
 
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Chassis No : <span
-                    style="font-weight: 700;">{{camera_vehicle.chassis_no}}</span></td>
-            <td style="border: 1px solid black;padding: 1px;">Engine No : <span
-                    style="font-weight: 700;">{{camera_vehicle.engine_no}}</span></td>
-        </tr>
+    <div class="table-responsive">
+        <table class="table table-bordered mb-1">
 
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Vehicle Make : <span
-                    style="font-weight: 700;">{{camera_vehicle.vehicle_make}}</span></td>
-            <td style="border: 1px solid black;padding: 1px;">Vehicle Model : <span
-                    style="font-weight: 700;">{{camera_vehicle.vehicle_model}}</span></td>
-        </tr>
+            <tr>
+                <th colspan="2" style="border: 1px solid black;padding: 2px;">Product Details</th>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Primey Camera</td>
+                <td style="border: 1px solid black;padding: 1px;">Secondary Camera</td>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Camera Serial Number : <span
+                        style="font-weight: 700;">{{ camera_vehicle.camera_serial_number_primary }}</span></td>
+                <td style="border: 1px solid black;padding: 1px;">Camera Serial Number : <span
+                        style="font-weight: 700;">{{ camera_vehicle.camera_serial_number_secondary }}</span></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">IMEI Number: <span
+                        style="font-weight: 700;">{{ camera_vehicle.imei_no }}</span></td>
+                <td style="border: 1px solid black;padding: 1px;">Model Number: <span
+                        style="font-weight: 700;">{{ camera_vehicle.model_number_primary }}</span></td>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">DID Number: <span
+                        style="font-weight: 700;">{{ camera_vehicle.did_no }}</span></td>
+                <td style="border: 1px solid black;padding: 1px;">DID Number: <span
+                        style="font-weight: 700;">{{ camera_vehicle.did_no }}</span></td>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Model Number: <span
+                        style="font-weight: 700;">{{ camera_vehicle.model_number_secondary }}</span></td>
+                <td style="border: 1px solid black;padding: 1px;">Secondary Camera-2</td>
+    
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">SIM Number: <span
+                        style="font-weight: 700;">{{ camera_vehicle.sim_no }}</span></td>
+                <td style="border: 1px solid black;padding: 1px;">Camera Serial Number: <span
+                        style="font-weight: 700;">{{ camera_vehicle.camera_serial_number_tertiary }}</span></td>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Mobile Newtwork: <span
+                        style="font-weight: 700;">{{ camera_vehicle.mobile_network }}</span></td>
+                <td style="border: 1px solid black;padding: 1px;">Model Number: <span
+                        style="font-weight: 700;">{{ camera_vehicle.model_number_tertiary }}</span></td>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;"><span
+                        style="font-weight: 700;"></span></td>
+                <td style="border: 1px solid black;padding: 1px;">DID Number: <span
+                        style="font-weight: 700;">{{ camera_vehicle.did_no }}</span></td>
+            </tr>
+    
+        </table>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="table table-bordered mb-1">
 
-    </table>
+            <tr>
+                <th colspan="2" style="border: 1px solid black;padding: 2px;">Certificate Details</th>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Automative industry standard AIS-004(Part-3)</td>
+                <td style="border: 1px solid black;padding: 1px;">Model Number: <span
+                    style="font-weight: 700;">{{ camera_vehicle.model_number_quaternary }}</span></td>
+            </tr>
+    
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Test Report Number : CD0MP0483 & 25.11.2020 </td>
+                <td style="border: 1px solid black;padding: 1px;">Part Number : <span
+                    style="font-weight: 700;">{{ camera_vehicle.part_number }}</span></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black;padding: 1px;">Automative Tracking Device (ATD) India Standard - ISI 7833:2018</td>
+                <td style="border: 1px solid black;padding: 1px;">Drawing Number: <span
+                    style="font-weight: 700;">{{ camera_vehicle.drawing_number }}</span></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border: 1px solid black;padding: 1px;">Test Report Number CD0GP8366 & 2.611.2020</td>
+            </tr>
+        </table>
+    </div>
 
-    <table class="table table-bordered mb-1">
+    <div class="table-responsive">
+        <table class="table table-bordered mb-4">
+            <tr>
+                <th style="border: 1px solid black;padding: 2px;">Vehicle Number Plate View</th>
+                <th style="border: 1px solid black;padding: 2px;">Camera Image</th>
+                <th style="border: 1px solid black;padding: 2px;">Camera Fitment Pic-1</th>
+                <th style="border: 1px solid black;padding: 2px;">Camera Fitment Pic-2</th>
+            </tr>
+            <tr>
+                <td class="text-center" style="border: 1px solid black;padding: 1px;">
+                    <img src="{{ camera_vehicle.Vehicle_number_plate_view.url }}" alt="Vehicle Number Plate View" class="p-1"
+                        style="text-align: center;" width="170" height="200">
+                </td>
+                <td class="text-center" style="border: 1px solid black;padding: 1px;">
+                    <img src="{{ camera_vehicle.Camera_image.url }}" alt="Camera Image" class="p-1" width="170" height="200">
+                </td>
+                <td class="text-center" style="border: 1px solid black;padding: 1px;">
+                    <img src="{{ camera_vehicle.Sensor_image.url }}" alt="Sensor Image" class="p-1" width="170" height="200">
+                </td>
+                <td class="text-center" style="border: 1px solid black;padding: 1px;">
+                    <img src="{{ camera_vehicle.Display_image.url }}" alt="Display Image" class="p-1" width="170" height="200">
+                </td>
+            </tr>
+    
+            <tr>
+                <td colspan="4" style="border: 1px solid black;padding: 1px;">
+                    <p class="mb-4" style="font-size: 10px;font-weight: 700;">This is certifying that following vehicle has
+                        been fitted and activated with approved CCTV Camera as
+                        per Standard which is activated live monitoring and more features, unless the device tampered or the
+                        seal is Broken by unauthorized technicians or individual.</p>
+                </td>
+            </tr>
+    
+            <tr>
+                <td class="text-center" colspan="2" style="border: 1px solid black;padding: 1px">
+                    <br><br><br><span style="font-weight: 500;"><b>Authorised Dealer Signature</b></span>
+    
+                </td>
+                <td class="text-center" style="border: 1px solid black;padding: 1px;">
+                    <br><br><br><span style="font-weight: 500;"><b>Customer Signature</b></span>
+    
+                </td>
+                <td class="text-center" style="border: 1px solid black;padding: 1px;">
+                    <br><br><br><span style="font-weight: 500;"><b>Distributor Signature</b></span>
+                </td>
+            </tr>
+    
+        </table>
+    </div>
 
-        <tr>
-            <th colspan="1" style="border: 1px solid black;padding: 1px;">Vehicle Owner Details</th>
-            <th style="border: 1px solid black;padding: 1px;font-weight: 700;">Manufacturer Name :<span
-                    style="font-weight: 700;">{{camera_vehicle.manufacturer_name}}</span></th>
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Owner Name / Company name : <span
-                    style="font-weight: 700;">{{camera_vehicle.owner_name}}</span> </td>
-            <td style="border: 1px solid black;padding: 1px;">Distributor Name : <span
-                    style="font-weight: 700;">{{camera_vehicle.distributor_name}}</span></td>
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Mobile No : <span
-                    style="font-weight: 700;">{{camera_vehicle.mobile_no}}</span></td>
-            <td rowspan="2" style="border: 1px solid black;padding: 1px;">Distributor Address : <span
-                    style="font-weight: 700;">{{camera_vehicle.distributor_address}}</span></td>
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Owner Address : <span
-                    style="font-weight: 700;">{{camera_vehicle.owner_address}}</span></td>
-        </tr>
-
-    </table>
-
-    <table class="table table-bordered mb-1">
-
-        <tr>
-            <th colspan="2" style="border: 1px solid black;padding: 2px;">Product Details</th>
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Primey Camera</td>
-            <td style="border: 1px solid black;padding: 1px;">Secondary Camera</td>
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Camera Serial Number : <span
-                    style="font-weight: 700;">{{ camera_vehicle.camera_serial_number_primary }}</span></td>
-            <td style="border: 1px solid black;padding: 1px;">Camera Serial Number : <span
-                    style="font-weight: 700;">{{ camera_vehicle.camera_serial_number_secondary }}</span></td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">IMEI Number: <span
-                    style="font-weight: 700;">{{ camera_vehicle.imei_no }}</span></td>
-            <td style="border: 1px solid black;padding: 1px;">Model Number: <span
-                    style="font-weight: 700;">{{ camera_vehicle.model_number_primary }}</span></td>
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">DID Number: <span
-                    style="font-weight: 700;">{{ camera_vehicle.did_no }}</span></td>
-            <td style="border: 1px solid black;padding: 1px;">DID Number: <span
-                    style="font-weight: 700;">{{ camera_vehicle.did_no }}</span></td>
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Model Number: <span
-                    style="font-weight: 700;">{{ camera_vehicle.model_number_secondary }}</span></td>
-            <td style="border: 1px solid black;padding: 1px;">Secondary Camera-2</td>
-
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">SIM Number: <span
-                    style="font-weight: 700;">{{ camera_vehicle.sim_no }}</span></td>
-            <td style="border: 1px solid black;padding: 1px;">Camera Serial Number: <span
-                    style="font-weight: 700;">{{ camera_vehicle.camera_serial_number_tertiary }}</span></td>
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Mobile Newtwork: <span
-                    style="font-weight: 700;">{{ camera_vehicle.mobile_network }}</span></td>
-            <td style="border: 1px solid black;padding: 1px;">Model Number: <span
-                    style="font-weight: 700;">{{ camera_vehicle.model_number_tertiary }}</span></td>
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;"><span
-                    style="font-weight: 700;"></span></td>
-            <td style="border: 1px solid black;padding: 1px;">DID Number: <span
-                    style="font-weight: 700;">{{ camera_vehicle.did_no }}</span></td>
-        </tr>
-
-    </table>
-
-    <table class="table table-bordered mb-1">
-
-        <tr>
-            <th colspan="2" style="border: 1px solid black;padding: 2px;">Certificate Details</th>
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Automative industry standard AIS-004(Part-3)</td>
-            <td style="border: 1px solid black;padding: 1px;">Model Number: <span
-                style="font-weight: 700;">{{ camera_vehicle.model_number_quaternary }}</span></td>
-        </tr>
-
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Test Report Number : CD0MP0483 & 25.11.2020 </td>
-            <td style="border: 1px solid black;padding: 1px;">Part Number : <span
-                style="font-weight: 700;">{{ camera_vehicle.part_number }}</span></td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black;padding: 1px;">Automative Tracking Device (ATD) India Standard - ISI 7833:2018</td>
-            <td style="border: 1px solid black;padding: 1px;">Drawing Number: <span
-                style="font-weight: 700;">{{ camera_vehicle.drawing_number }}</span></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="border: 1px solid black;padding: 1px;">Test Report Number CD0GP8366 & 2.611.2020</td>
-        </tr>
-    </table>
-
-    <table class="table table-bordered mb-4">
-        <tr>
-            <th style="border: 1px solid black;padding: 2px;">Vehicle Number Plate View</th>
-            <th style="border: 1px solid black;padding: 2px;">Camera Image</th>
-            <th style="border: 1px solid black;padding: 2px;">Camera Fitment Pic-1</th>
-            <th style="border: 1px solid black;padding: 2px;">Camera Fitment Pic-2</th>
-        </tr>
-        <tr>
-            <td class="text-center" style="border: 1px solid black;padding: 1px;">
-                <img src="{{ camera_vehicle.Vehicle_number_plate_view.url }}" alt="Vehicle Number Plate View" class="p-1"
-                    style="text-align: center;" width="170" height="200">
-            </td>
-            <td class="text-center" style="border: 1px solid black;padding: 1px;">
-                <img src="{{ camera_vehicle.Camera_image.url }}" alt="Camera Image" class="p-1" width="170" height="200">
-            </td>
-            <td class="text-center" style="border: 1px solid black;padding: 1px;">
-                <img src="{{ camera_vehicle.Sensor_image.url }}" alt="Sensor Image" class="p-1" width="170" height="200">
-            </td>
-            <td class="text-center" style="border: 1px solid black;padding: 1px;">
-                <img src="{{ camera_vehicle.Display_image.url }}" alt="Display Image" class="p-1" width="170" height="200">
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="4" style="border: 1px solid black;padding: 1px;">
-                <p class="mb-4" style="font-size: 10px;font-weight: 700;">This is certifying that following vehicle has
-                    been fitted and activated with approved CCTV Camera as
-                    per Standard which is activated live monitoring and more features, unless the device tampered or the
-                    seal is Broken by unauthorized technicians or individual.</p>
-            </td>
-        </tr>
-
-        <tr>
-            <td class="text-center" colspan="2" style="border: 1px solid black;padding: 1px">
-                <br><br><br><span style="font-weight: 500;"><b>Authorised Dealer Signature</b></span>
-
-            </td>
-            <td class="text-center" style="border: 1px solid black;padding: 1px;">
-                <br><br><br><span style="font-weight: 500;"><b>Customer Signature</b></span>
-
-            </td>
-            <td class="text-center" style="border: 1px solid black;padding: 1px;">
-                <br><br><br><span style="font-weight: 500;"><b>Distributor Signature</b></span>
-            </td>
-        </tr>
-
-    </table>
 </div>
 
 {% endblock content %}

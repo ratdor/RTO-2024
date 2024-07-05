@@ -75,8 +75,7 @@
 .logo {
     width: 170px;
 }
-
-@media (max-width: 767px) {
+@media (max-width: 740px) {
 
     .table th,
     .table td {
@@ -98,13 +97,21 @@
     .text-center h2 {
         font-size: 10px;
     }
-
+    .header{
+        width: 1200px;
+    }
+    .headers{
+        width: 1180px;
+    }
     .header .qr-code {
-        width: 50px;
+        width: 100px;
     }
 
     .logo {
-        width: 60px;
+        width: 100px;
+    }
+    .table-responsive{
+        width:1185px;
     }
 
 }
