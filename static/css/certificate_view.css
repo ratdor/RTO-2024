@@ -75,7 +75,7 @@
 .logo {
     width: 170px;
 }
-@media (max-width: 740px) {
+@media (max-width: 710px) {
 
     .table th,
     .table td {
