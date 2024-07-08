@@ -4,8 +4,22 @@
 {% block link %} {% static 'css/search.css' %} {% endblock link %}
 {% block content %}
 
+<style>
+    body{
+        background-image: url('../static/images/loginimage-transformed.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .loginbox{
+        background: transparent;
+        border: 2px solid #ccc;
+        box-shadow: 0px 0px 10px 0px black;
+    }
+</style>
+
 <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4" style="max-width: 400px; width: 100%;">
+    <div class="card p-4 loginbox" style="max-width: 400px; width: 100%;">
         <h2 class="text-center mb-4">Login</h2>
         <form method="post">
             {% csrf_token %}
